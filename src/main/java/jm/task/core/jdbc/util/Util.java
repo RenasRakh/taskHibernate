@@ -57,22 +57,10 @@ public class Util {
             serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            System.out.println("SessionFactory created successfully");
+
         } catch (HibernateException m) {
             m.printStackTrace();
         }
         return sessionFactory;
     }
-
-    public static void close(){
-        try {
-        if(serviceRegistry!= null) {
-            StandardServiceRegistryBuilder.destroy(serviceRegistry);
-        }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
