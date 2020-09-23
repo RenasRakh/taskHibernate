@@ -16,7 +16,6 @@ import java.util.Properties;
 
 public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/mydbtest?autoReconnect=true&useSSL=false&useUnicode=true&serverTimezone=Europe/Moscow";
-
     private static final String USERNAME = "root";
     private static final String PASSWORD = "sql4*vjyjkbn3*sS";
     private static SessionFactory sessionFactory;
@@ -47,8 +46,8 @@ public class Util {
             Properties properties = new Properties();
             properties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
             properties.put(Environment.URL, URL);
-            properties.put(Environment.USER, "root");
-            properties.put(Environment.PASS, "sql4*vjyjkbn3*sS");
+            properties.put(Environment.USER, USERNAME);
+            properties.put(Environment.PASS, PASSWORD);
             properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
             properties.put(Environment.SHOW_SQL, "true");
             properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");

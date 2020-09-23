@@ -2,7 +2,6 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -22,13 +21,10 @@ public class UserDaoHibernateImpl implements UserDao {
     public void createUsersTable() {
         try (Session  session = Util.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            String sqlCommand = "CREATE TABLE users (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), lastName VARCHAR(20), age TINYINT)";
-
-            session.createSQLQuery(sqlCommand);
+            session.createSQLQuery("CREATE TABLE users (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), lastName VARCHAR(20), age TINYINT)");
 
             tx.commit();
             System.out.println("Таблица создана");
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,9 +34,8 @@ public class UserDaoHibernateImpl implements UserDao {
     public void dropUsersTable() {
         try (Session  session = Util.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            String sqlCommand = "DROP TABLE users";
 
-            Query sq = session.createSQLQuery(sqlCommand);
+            Query sq = session.createSQLQuery("DROP TABLE users");
             sq.executeUpdate();
             tx.commit();
             System.out.println("Таблица  удалена");
@@ -91,9 +86,8 @@ public class UserDaoHibernateImpl implements UserDao {
     public void cleanUsersTable() {
         try (Session  session = Util.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            String sqlCommand = "DELETE from users";
 
-            session.createSQLQuery(sqlCommand).executeUpdate();
+            session.createSQLQuery("DELETE from users").executeUpdate();
             tx.commit();
             System.out.println("Таблица  очищена");
         } catch (Exception e) {
